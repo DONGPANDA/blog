@@ -3,7 +3,7 @@
 <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="control-label col-md-2" for="username">用户名</label>
                         <div class="col-md-10 input-group">
@@ -19,7 +19,7 @@
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-lock"></span>
                             </span>
-                            <input required name="password" class="form-control" id="password" placeholder="请输入密码">
+                            <input required type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -29,6 +29,12 @@
                                 <span class="glyphicon glyphicon-envelope"></span>
                             </span>
                             <input required name="email" class="form-control" id="email" placeholder="请输入邮箱">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="avatar" class="control-label col-md-2">头像</label>
+                        <div class="col-md-10 input-group">
+                            <input required name="avatar" type="file" id="avatar">
                         </div>
                     </div>
                     <div class="form-group row">

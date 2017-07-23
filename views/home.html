@@ -1,5 +1,32 @@
 <% include ./header.html %>
-<div>
-    <h1>首页</h1>
+<div class="jumbotron">
+    <h1>WELCOME!</h1>
+    <p>香蕉（xiangjiao），是一种通过关注机制分享简短实时信息的广播式的社交网络平台。</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">more...</a></p>
 </div>
+<%if(user){%>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    <%if(articles){%>
+       <%articles.forEach(item=>{%>
+            <div class="media">
+                <div class="media-left">
+                    <a href="">
+                        <img class="media-object" width="23" height="23" src="<%=item.user.avatar%>" alt="<%=item.user.username%>">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading"><a href="/article/detail/<%=item._id%>">
+                        <%=item.title%>
+                    </a></h3>
+                    <p class="media-bottom"><%=item.content%></p>
+                    <p class="media-bottom">作者:<%=item.user.username%></p>
+                    <p class="media-bottom">发表时间:<%=item.createAt.toLocaleString()%></p>
+                </div>
+            </div>
+       <%})%>
+    <%}%>
+    </div>
+</div>
+<%}%>
 <% include ./footer.html %>
