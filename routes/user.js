@@ -12,7 +12,6 @@ router.get('/signup',function (req, res) {
 router.post('/signup',upload.single('avatar'),function (req, res) {
     let user=req.body;
     user.avatar=`/${req.file.filename}`
-    console.log(user);
     User.findOne({username:user.username},function (err,oldUser) {
         if(err){
             req.flash('error',err.toString());
@@ -56,6 +55,39 @@ router.post('/signin',function (req,res) {
         }
     })
 });
+router.get('/info',function (req,res) {
+    let _id=req.session.user._id;
+    User.findById({_id},function (err,result) {
+        if(err){
+            req.flash('error',err.toString());
+            res.redirect('back');
+        }else{
+            res.render('user/info',{title:'个人中心',result})
+        }
+    })
+});
+router.post('/info',upload.single('avatar'),function (req,res) {
+    let _id=req.session.user._id;
+    let user=req.body;
+    user.avatar=`/${req.file.filename}`
+    User.update({_id},user,function (err,result) {
+        if(err){
+            req.flash('error',err.toString());
+            res.redirect('back');
+        }else{
+            User.findById({_id},function (err,result) {
+                if(err){
+                    req.flash('error',err.toString());
+                    res.redirect('back');
+                }else{
+                    req.session.user=result;
+                    req.flash('success','个人信息修改成功');
+                    res.redirect('back')
+                }
+            })
+        }
+    })
+})
 router.get('/signout',function (req,res) {
     req.session.user=null;
     res.redirect('/user/signin');

@@ -1,15 +1,15 @@
 <% include ./header.html %>
-<div class="jumbotron">
+<div class="jumbotron" style="padding-left: 18%">
     <h1>WELCOME!</h1>
     <p>香蕉（xiangjiao），是一种通过关注机制分享简短实时信息的广播式的社交网络平台。</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">more...</a></p>
+    <p><a href="https://baike.baidu.com/item/%E9%A6%99%E8%95%89/150475?fr=aladdin" class="btn btn-primary btn-lg" href="#" role="button">more...</a></p>
 </div>
 <%if(user){%>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
     <%if(articles){%>
        <%articles.forEach(item=>{%>
-            <div class="media">
+            <div class="media" style="border-bottom: 0.1px solid #ccc">
                 <div class="media-left">
                     <a href="">
                         <img class="media-object" width="23" height="23" src="<%=item.user.avatar%>" alt="<%=item.user.username%>">
